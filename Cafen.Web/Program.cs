@@ -7,7 +7,13 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 var test = builder.Configuration.GetValue<string>("Registry:Url");
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(test) });
+builder.Services.AddScoped(sp => {
+    var client = new HttpClient { BaseAddress = new Uri(test) };
+
+    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/vnd.docker.distribution.manifest.v2+json"));
+
+    return client;
+});
 
 builder.Services.AddOidcAuthentication(options =>
 {

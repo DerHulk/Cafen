@@ -16,19 +16,44 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>blub</th>                
+                <th>Image Name</th>
+                <th>Tags</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var c in this.Catalog.Repositories)
             {
                 <tr>
-                    <td>@c</td>                    
+                    <td>@c</td>
+                    <td>
+                        <button @onclick="(()=> this.LoadTags(c))">Load Tags</button>
+                        @if (this.Tags.ContainsKey(c))
+                        {
+                            @string.Join(",", this.Tags[c].Tags);                            
+
+                             foreach(var t in this.Tags[c].Tags)
+                            {
+                                <button @onclick="(()=> this.Delete(c, t))">Delete @t</button>
+                            }
+                        }                        
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 }
+
+
+<Cafen.Web.Components.Modal @ref="Modal">
+    <Title>Do you want to delete this image?</Title>
+    <Body>
+        Delete?
+    </Body>
+    <Footer>
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => Modal.Close()">Close</button>
+    </Footer>
+</Cafen.Web.Components.Modal>
 
 
 
