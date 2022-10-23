@@ -10,6 +10,7 @@ Project target is to get in touche/learn with
 - Flyouts
 - Docker-Compose
 - Write Tests
+- E2E Tests with Playwright
 
 
 # Setup Registry
@@ -29,3 +30,6 @@ docker run --name keycloak -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMI
 - https://docs.docker.com/registry/spec/auth/token/
 - https://github.com/Joxit/docker-registry-ui
 - https://stackoverflow.com/questions/59256798/how-to-use-bootstrap-modal-in-blazor-client-app
+- https://github.com/microsoft/playwright
+- https://github.com/microsoft/playwright-dotnet
+
